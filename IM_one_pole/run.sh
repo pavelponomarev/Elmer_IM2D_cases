@@ -39,15 +39,16 @@ ElmerGrid 2 2 im -partdual -partlayers 0 -metis $np 3 -connect 2 3 4 5 7 8
 # Transient voltage driven simulation from zero initial conditions
 #ElmerSolver transient.sif
 # parallel execution
-echo "transient.sif" > ELMERSOLVER_STARTINFO
-mpirun -np $np ElmerSolver_mpi 
+#echo "transient.sif" > ELMERSOLVER_STARTINFO
+#mpirun -np $np ElmerSolver_mpi 
 
 
-# steady state AC voltage driven model with defined stator and rotor circuits
+################################################################################
+# steady state (time-harmonic) AC voltage driven model with defined stator and rotor circuits
 #ElmerSolver harmonic.sif
 # parallel execution
-#echo "harmonic.sif" > ELMERSOLVER_STARTINFO
-#mpirun -np $np ElmerSolver_mpi 
+echo "harmonic.sif" > ELMERSOLVER_STARTINFO
+mpirun -np $np ElmerSolver_mpi 
 
 #iron losses
 #echo "transient_iron_loss.sif" > ELMERSOLVER_STARTINFO
