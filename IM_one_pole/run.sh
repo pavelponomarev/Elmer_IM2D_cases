@@ -22,24 +22,25 @@ rm -rf im_stator im_rotor im_stator.msh im_rotor.msh
 
 
 # parallel partitioning
-np=6     #number of partitions and parallel processes
+np=4     #number of partitions and parallel processes
 ElmerGrid 2 2 im -partdual -partlayers 0 -metis $np 3 -connect 2 3 4 5 7 8
 #ElmerGrid 2 2 im -partdual -metis $np 4 -connect 2 3 4 5 7 8   # without partlayers 0 there is a discrepancy between NF torque and band torque
 
 
-
+################################################################################
 # simple model showing that the geometry and boundary conditions are defined correctly
 #ElmerSolver model.sif
 # parallel execution
-echo "model.sif" > ELMERSOLVER_STARTINFO
-mpirun -np $np ElmerSolver_mpi 
+#echo "model.sif" > ELMERSOLVER_STARTINFO
+#mpirun -np $np ElmerSolver_mpi 
 
 
+################################################################################
 # Transient voltage driven simulation from zero initial conditions
 #ElmerSolver transient.sif
 # parallel execution
-#echo "transient.sif" > ELMERSOLVER_STARTINFO
-#mpirun -np $np ElmerSolver_mpi 
+echo "transient.sif" > ELMERSOLVER_STARTINFO
+mpirun -np $np ElmerSolver_mpi 
 
 
 # steady state AC voltage driven model with defined stator and rotor circuits
