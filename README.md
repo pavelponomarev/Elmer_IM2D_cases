@@ -1,5 +1,6 @@
 # Elmer_IM2D_cases
 Example cases for 2D IM modelling in Elmer.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.581131.svg)](https://doi.org/10.5281/zenodo.581131)
 
 The model consists of 90-degrees sector of IM cross-section representing one 
 magnetic pole. 
