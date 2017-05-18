@@ -22,14 +22,14 @@ rm -rf im_stator im_rotor im_stator.msh im_rotor.msh
 
 
 # parallel partitioning
-np=4     #number of partitions and parallel processes
-ElmerGrid 2 2 im -partdual -partlayers 0 -metis $np 3 -connect 2 3 4 5 7 8
+#np=4     #number of partitions and parallel processes
+#ElmerGrid 2 2 im -partdual -partlayers 0 -metis $np 3 -connect 2 3 4 5 7 8
 #ElmerGrid 2 2 im -partdual -metis $np 4 -connect 2 3 4 5 7 8   # without partlayers 0 there is a discrepancy between NF torque and band torque
 
 
 ################################################################################
 # simple model showing that the geometry and boundary conditions are defined correctly
-#ElmerSolver model.sif
+ElmerSolver model.sif
 # parallel execution
 #echo "model.sif" > ELMERSOLVER_STARTINFO
 #mpirun -np $np ElmerSolver_mpi 
@@ -53,10 +53,11 @@ ElmerGrid 2 2 im -partdual -partlayers 0 -metis $np 3 -connect 2 3 4 5 7 8
 
 ################################################################################
 #iron losses
-echo "transient_iron_loss.sif" > ELMERSOLVER_STARTINFO
-mpirun -np $np ElmerSolver_mpi 
+#echo "transient_iron_loss.sif" > ELMERSOLVER_STARTINFO
+#mpirun -np $np ElmerSolver_mpi 
 
 
+################################################################################
 # Transient speed up of IM from zero speed with kinematic equation
 #elmerf90 -O -o Kinematics Kinematics.f90
 #ElmerSolver transient_kinematics.sif
